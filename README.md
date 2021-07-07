@@ -1,7 +1,9 @@
 # DL_HW1
 
-成大測量 深度學習作業一
+成大測量 深度學習作業一'
+
 python environment numpy,matplotlib,tensorflow
+
 keras database fashion minst
 
 這次實習是要分析三種不同深度的網路模型分類精準度，而我選擇的三個深度分別是一層、十層、三十層。
