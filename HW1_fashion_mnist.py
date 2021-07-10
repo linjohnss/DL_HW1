@@ -1,10 +1,9 @@
 #%%
 import tensorflow as tf
-from tensorflow import keras
 from tensorflow.keras.datasets import fashion_mnist
-import tensorflow.python.keras.utils.np_utils as np_utils
 import numpy as np
 import matplotlib.pyplot as plt
+
 #Load training data and testing from mnist
 (x_train_image, y_train_label), (x_test_image, y_test_label) = fashion_mnist.load_data()
 class_names = ['T-shirt','Trouser','Pullover','Dress','Coat','Sandal','Shirt','Sneaker','Bag','Ankle boot']
@@ -32,8 +31,8 @@ x_train = x_train_image.reshape(len(x_train_image), 28*28).astype('float32')
 x_test = x_test_image.reshape(len(x_test_image), 28*28).astype('float32')
 x_train_norm = x_train/255  
 x_test_norm = x_test/255
-y_TrainOneHot = np_utils.to_categorical(y_train_label)
-y_TestOneHot = np_utils.to_categorical(y_test_label)
+y_TrainOneHot = tf.one_hot(y_train_label,10) #np_utils.to_categorical -> tf.one_hot
+y_TestOneHot = tf.one_hot(y_test_label,10)
 
 # Build a neural network here.....................
 from tensorflow.keras.models import Sequential, Model
@@ -78,3 +77,5 @@ print("\t[Info] Error analysis:")
 for i in range(len(prediction)):  
     if prediction[i] != y_test_label[i]:  
         print("\tAt %d'th: %d is with wrong prediction as %d!" % (i, y_test_label[i], prediction[i])) 
+
+# %%
